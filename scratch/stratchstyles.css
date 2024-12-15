@@ -1,0 +1,181 @@
+body{
+    font-family: 'Futura';
+    color: black;
+    background-color: whitesmoke
+    text-align justify;
+}
+ol{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+
+}
+a{
+    
+    color: #a52a2a;
+    display: inline-block; /* Ensures the border wraps around the content */
+            text-decoration; /* Removes the default underline */
+            border: 0px solid black; /* Adds a black border */
+            padding: 3px; /* Adds spacing inside the border */
+            border-radius: 5px; /* Optional: rounds the corners */
+            display: inline-block;
+            font-size: 20px;
+           
+    
+}
+
+
+p{
+    font-size: larger;
+}
+
+
+ol > li {
+    font-weight: bold; /* Makes the questions bold */
+    font-size: 20px;
+}
+
+body {
+    background-image: url(); /* Path to your image */
+    background-color: #edcdcd74;
+    background-size: cover; /* Makes the image cover the entire screen */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    margin: 0;
+    height: 100vh; /* Ensures the body covers the full viewport height */
+
+}
+
+ .top-nav{
+    text-align: center;
+
+ }
+ h1{
+    text-align: left;
+
+ }
+ .website-name {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+ }
+ 
+ .video-container {
+    display: flex; /* Use Flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically (optional) */
+    height: 100vh; /* Optional: Full viewport height */
+  }
+  iframe {
+    max-width: 100%; /* Make it responsive */
+    border: none; /* Clean look */
+  }
+.top-nav
+
+.common.bottom {
+    display: flex; /* Enables flexbox */
+    flex-direction: column; /* Stacks children vertically */
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    height: auto; /* Adjust height to content */
+    padding: 10px; /* Adds padding */
+    background-color: #a52a2a; /* Footer background color */
+    color: #fcfcfc; /* Text color */
+    font-size: 0.9em; /* Footer font size */
+}
+
+.common.bottom p, .common.bottom a {
+    margin: 5px 0; /* Adds vertical spacing between items */
+}
+
+.common.bottom a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.common.bottom a:hover {
+    text-decoration: underline;
+}
+
+.common.bottom {
+    display: flex; /* Enables flexbox */
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    height: 75px; /* Optional: Sets a fixed height for the footer */
+    background-color: #a52a2a; /* Optional: Adds a background color */
+    color: #fcfcfc; /* Optional: Text color */
+    text-align: center;
+   
+  }
+
+  body {
+    font-family: 'Futura';
+    color: black;
+    background-color: whitesmoke;
+    text-align: justify;
+    margin: 0; /* Reset default body margin */
+    padding: 0; /* Reset default body padding */
+}
+
+h3 {
+    text-align: center; /* Center the heading text */
+}
+
+.image-container {
+    display: flex; /* Use Flexbox to align images in a row */
+    justify-content: space-between; /* Distribute images with equal space between them */
+    align-items: center; /* Vertically center the images */
+    width: 80%; /* Set width of the container */
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 0 5%; /* Add padding to left and right */
+}
+
+.image-container img {
+    width: 30%; /* Set each image to take up 30% of the container width */
+    height: auto; /* Ensure images maintain aspect ratio */
+    object-fit: contain; /* Ensure images maintain aspect ratio without distortion */
+    border: rgb(226, 82, 39) 3px solid; /* Border around each image */
+    padding: 10px; /* Adds space inside the border */
+}
+
+img {
+    margin: 0 15px; /* Add space between the images */
+}
+
+.common.bottom {
+    display: flex; /* Enables flexbox */
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    height: 75px; /* Sets a fixed height for the footer */
+    background-color: #a52a2a; /* Optional: Adds a background color */
+    color: #fcfcfc; /* Text color */
+    text-align: center;
+    margin-top: 20px; /* Optional: Adds space above the footer */
+}
+
+.common.bottom p, .common.bottom a {
+    margin: 5px 0; /* Adds vertical spacing between items */
+}
+
+.common.bottom a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.common.bottom a:hover {
+    text-decoration: underline;
+}
+
+.center {
+    text-align: center;
+}
+.tableauPlaceholder{
+    border: 5px solid #a52a2a; /* Brown border */
+    border-radius: 10px; /* Optional: rounds the corners of the border */
+    padding: 10px; /* Adds space inside the border */
+    margin: 20px auto; /* Centers the container with margin */
+    display: block; /* Ensures it behaves like a block-level element */
+    width: 90%; /* Optional: Adjust width as needed */
+}

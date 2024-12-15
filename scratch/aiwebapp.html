@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sneaker Crossword Puzzle</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1c1c1e;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2rem;
+    }
+    .content-container {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px 0;
+    }
+    .trivia-container, .word-bank-container {
+      width: 45%;
+      padding: 10px;
+      background-color: #333;
+      border-radius: 10px;
+    }
+    .trivia-container ul, .word-bank-container ul {
+      list-style: none;
+      padding: 0;
+    }
+    .trivia-container li, .word-bank-container li {
+      margin: 10px 0;
+      padding: 5px;
+      background-color: #444;
+      border-radius: 5px;
+    }
+    table {
+      margin: 20px auto;
+      border-collapse: collapse;
+    }
+    td {
+      border: 1px solid #444;
+      width: 40px;
+      height: 40px;
+      background-color: #2c2c2e;
+    }
+    input[type="text"] {
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      background: transparent;
+      color: #fff;
+      border: none;
+      font-size: 1.2rem;
+    }
+    input[type="text"]:focus {
+      outline: none;
+    }
+    button {
+      background-color: #007aff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0051a8;
+    }
+    #result {
+      font-size: 1.2rem;
+      margin-top: 20px;
+    }
+    .bold {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Sneaker Crossword Puzzle</h1>
+
+<div class="content-container">
+  <div class="trivia-container">
+    <h2>Trivia Questions</h2>
+    <ul id="trivia-questions-list"></ul>
+  </div>
+  <div class="word-bank-container">
+    <h2>Word Bank</h2>
+    <ul id="word-bank-list"></ul>
+  </div>
+</div>
+
+<table id="puzzle-grid"></table>
+
+<div>
+  <button class="bold" onclick="checkAnswers()">Check Answer</button>
+  <button class="bold" onclick="resetPuzzle()">New Puzzle</button>
+</div>
+
+<p id="result"></p>
+
+
+<script>
+  const wordBank = ["NIKE", "ADIDAS", "BROOKS", "SAUCONY", "PUMA", "REEBOK"];
+  const triviaPool = [
+    { question: "Which brand features the 'Swoosh' logo?", answer: "NIKE" },
+    { question: "Which sportswear company was founded in Germany in 1948?", answer: "ADIDAS" },
+    { question: "Which company is known for the 'Brooks Beast' shoes?", answer: "BROOKS" },
+    { question: "Which running brand is named after a river in Pennsylvania?", answer: "SAUCONY" },
+    { question: "Which company features a jumping puma logo?", answer: "PUMA" },
+    { question: "Which brand is famous for its ‘Pump’ technology?", answer: "REEBOK" },
+    { question: "Which brand launched the Air Jordan line?", answer: "NIKE" },
+    { question: "Which company is known for the Ultraboost running shoe?", answer: "ADIDAS" },
+    { question: "Which company launched the Classic Leather shoes in 1983?", answer: "REEBOK" },
+    { question: "Which brand uses the tagline 'Forever Faster'?", answer: "PUMA" }
+  ];
+
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  function createPuzzle() {
+    const grid = document.getElementById("puzzle-grid");
+    grid.innerHTML = ""; // Clear grid
+    const maxWordLength = Math.max(...wordBank.map(word => word.length));
+
+    // Create rows for each word
+    wordBank.forEach((word, rowIndex) => {
+      const row = document.createElement("tr");
+      for (let colIndex = 0; colIndex < maxWordLength; colIndex++) {
+        const cell = document.createElement("td");
+        const input = document.createElement("input");
+        input.type = "text";
+        input.maxLength = 1;
+        if (colIndex < word.length) {
+          input.dataset.correct = word[colIndex];
+          if (Math.random() > 0.5) {
+            input.value = word[colIndex];
+            input.disabled = true;
+          }
+        } else {
+          input.disabled = true;
+        }
+        cell.appendChild(input);
+        row.appendChild(cell);
+      }
+      grid.appendChild(row);
+    });
+
+    // Populate trivia and word bank
+    populateTriviaAndWordBank();
+  }
+
+  function populateTriviaAndWordBank() {
+    // Shuffle and pick a random set of trivia questions
+    shuffleArray(triviaPool);
+    const selectedTrivia = triviaPool.slice(0, wordBank.length);
+
+    const triviaList = document.getElementById("trivia-questions-list");
+    const wordBankList = document.getElementById("word-bank-list");
+
+    triviaList.innerHTML = selectedTrivia.map(item => `<li>${item.question}</li>`).join("");
+    wordBankList.innerHTML = wordBank.map(word => `<li>${word}</li>`).join("");
+  }
+
+  function checkAnswers() {
+    const inputs = document.querySelectorAll("input[type='text']");
+    let correctCount = 0;
+    inputs.forEach(input => {
+      if (input.dataset.correct && input.value.toUpperCase() === input.dataset.correct) {
+        input.style.backgroundColor = "green";
+        correctCount++;
+      } else if (input.dataset.correct) {
+        input.style.backgroundColor = "red";
+      }
+    });
+    const result = document.getElementById("result");
+    result.textContent = correctCount === wordBank.join("").length
+      ? "Congratulations! All answers are correct!"
+      : "Some answers are incorrect. Try again!";
+  }
+
+  function resetPuzzle() {
+    document.getElementById("result").textContent = "";
+    createPuzzle(); // Resets the puzzle and generates new trivia
+  }
+
+  // Initialize puzzle
+  createPuzzle();
+</script>
+<a href="index.html">HOME</a>
+    
+<style>
+    a{    color: rgb(243, 43, 16); /* Change the color to blue (or any desired color) */
+        font-weight: bold; /* Make the text bold */
+        text-decoration: none; /* Remove underline (optional) */
+        border: #fff;
+        border: 0px solid white; /* Adds a black border */
+            padding: 3px; /* Adds spacing inside the border */
+            border-radius: 5px; /* Optional: rounds the corners */
+            display: inline-block;
+            font-size: 20px;
+    }
+    
+
+    .home-link:hover {
+        color: darkblue; /* Optional: Change color on hover */
+    }
+</style>
+
+
+</body>
+</html>
